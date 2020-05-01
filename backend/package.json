@@ -1,0 +1,27 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Parte do projeto que sera para a parte do backend",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lopes-obregon/restaurant_project.git"
+  },
+  "author": "Renan Lopes Obregon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lopes-obregon/restaurant_project/issues"
+  },
+  "homepage": "https://github.com/lopes-obregon/restaurant_project#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  }
+}
