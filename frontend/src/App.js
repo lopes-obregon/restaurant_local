@@ -1,8 +1,10 @@
 import React from 'react';
-
+//import Header from './Header';
+import Routes from './routes';
 function App() {
   return (
-    <h1>Testando novamente</h1>
+    //<Header title="Caixa"/>
+    <Routes/>
   );
 }
 
