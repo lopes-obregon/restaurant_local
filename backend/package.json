@@ -18,8 +18,11 @@
   "homepage": "https://github.com/lopes-obregon/restaurant_project#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "object-assign": "^4.1.1",
+    "vary": "^1.1.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.3"
