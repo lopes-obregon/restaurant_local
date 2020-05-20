@@ -38,11 +38,7 @@ module.exports = {
             return  response.json(pedidos);
         })
     },
-    async delete(request, response){
-        /**
-         * deletar os pedidos já feitos para não aver acumulo e peso no banco de dados
-         * o id relacioando é o id do admin no caso o dono do restaurante
-         */
+    async printPedidoEntregue(request,response){
         const { mesa } = request.params;
         let sql = `SELECT * FROM pedidos WHERE mesa_ou_nome = '${mesa}'`;
          /**
@@ -53,24 +49,39 @@ module.exports = {
         await connect.query(sql, function(error, [rows]){
             if(error) throw error;
             let dic;
+            console.log(rows.pedido);
             dic =  nomeEquantidadeLimpo(rows.pedido);
             let jsonReturn = {
                 produto : [],
                 quantidade : [],
+                numeroMesa:mesa,
             }
             for(var [produto, quantidade] of dic){
                 jsonReturn.produto.push(produto);
                 jsonReturn.quantidade.push(quantidade);
             }
+            console.log(jsonReturn);
             return response.json(jsonReturn);
         });
-        
+    },
+    async delete(request, response){
+        /**
+         * deletar os pedidos já feitos para não aver acumulo e peso no banco de dados
+         * o id relacioando é o id do admin no caso o dono do restaurante
+         */
+        let msg = "";
+        const [mesa] = request.params;
+        if(mesa==0){
+            msg = "Peidodo finalizado";
+        }else{
+            msg = "Pedido finalizado com sucesso";
+        }
         //console.log(a);
         //const admId =  request.headers.authorization;
         //let sql = `DELETE FROM pedidos WHERE mesa_ou_nome = '${mesa}' AND pedido_entrege = 'true' `;
         //await connect.query(sql);
         
-        //return response.status(204).send({status:"Pedido finalizado com sucesso"});
+        return response.status(204).send({status:msg});
     },
     async entreguePedido(request, response){
         /**

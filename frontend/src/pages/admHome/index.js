@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 //importando o estilo
 import './styles.css'
 export default function AdmHome(){
+    const userName = localStorage.getItem('userName');
     return(
         <div>
-            <h1>Seja bem vindo fulano</h1>
+            <h1>Seja bem vindo {userName}</h1>
             <div>
                 <section>
                     <p>Oque deseja fazer ?</p>

@@ -19,6 +19,8 @@ module.exports = {
         insereDados(nomeProdutoCliente, quantidadeProduto, dic2);
         //variavel para guardar os resultados
         let resultado = 0;
+        console.log(nomeProdutoCliente);
+        console.log(nomeProdutoDb);
         for(var[nomeProduto, valor] of dic){
             for(var [produto, quantidade] of dic2){
                 if(nomeProduto == produto){
@@ -26,7 +28,8 @@ module.exports = {
                 }
             }
         }
-        let mensaguem = "Valor Total: " + resultado;
+        console.log(resultado)
+        let mensaguem = resultado;
         return response.json({msg:mensaguem});
     }
 }

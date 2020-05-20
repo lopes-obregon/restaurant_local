@@ -11,9 +11,8 @@ export default function Login(){
         e.preventDefault();
         try{
             const response = await api.post('sessions', { user });
-            console.log(response);
             localStorage.setItem('userId', user);
-            localStorage.setItem('userName', response.data.name);
+            localStorage.setItem('userName', response.data);
             history.push('/admHome');
         }catch(err){
             alert("Falha no login tente novamente");

@@ -12,6 +12,7 @@ routes.post('/pedidoss', PedidosController.create);
 routes.get('/pedidoss', PedidosController.index);
 routes.delete('/pedidoss/:mesa', PedidosController.delete);
 routes.get('/pedidoss/:mesa', PedidosController.entreguePedido);
+routes.post('/pedidoss/:mesa', PedidosController.printPedidoEntregue);
 //rotas dos produtos e calculos dos produtos
 routes.get('/produtos', ProdutosController.obtemProdutos);//faz as consultas no banco e retorna os produtos
 routes.post('/produtos', ProdutosController.calcProduto);
