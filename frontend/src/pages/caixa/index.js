@@ -6,9 +6,7 @@ import ReactDom from 'react-dom';
 export default function Caixa(){
     const [numMesa, setNumMesa] = useState();
     const [produto, setProduto] =  useState();
-    const [valorTotal, setValorTotal] = useState();
     const [produtoMesa, setProdutoMesa] = useState();
-    const [produtos, setProdutos] = useState();
     let aux = "";
     let json = {
         nomeProdutoDb:[],
@@ -16,7 +14,8 @@ export default function Caixa(){
         nomeProdutoCliente:[],
         quantidadeProduto:[],
         produtos:"",
-        numeroMesa:0
+        numeroMesa:"",
+        valor:0
     };
     async function handleSearchTable(e){
         e.preventDefault();
@@ -44,25 +43,27 @@ export default function Caixa(){
 
             }
             await api.post('/produtos', json).then(response =>{
-               setValorTotal(response.data.msg);
+               json.valor = response.data;
             });
             for(let i in json.nomeProdutoCliente){
                 aux = aux + json.quantidadeProduto[i] +" " + json.nomeProdutoCliente[i] + " ";
             }
             json.produtos = aux;
-            setProdutos(json.produtos);
-            ReactDom.render(<card mesa={numMesa} />, document.getElementById('caixa'));
+            json.numeroMesa = numMesa;
+            console.log(json);
+            ReactDom.render(<Card mesa={json} />, document.getElementById('caixa'));
 
 
         } catch (error) {
             alert(`Mesa ${numMesa}, não há pedidos realizados`);
         }
     };
+    /*
     async function handleFechaMesa(mesaNum){
         api.delete(`/pedidoss/${mesaNum}`).then(response=>{
             console.log(response);
         })
-    };
+    };*/
     //
     return(
        <div>
@@ -91,17 +92,26 @@ function removeSpaceEndString(string){
     }
     return aux;
 }
-class card extends React.Component{
+class Card extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            mesa:props.mesa.numeroMesa,
+            produto:props.mesa.produtos,
+            valorTotal:props.mesa.valor.msg
+        }
+    };
     render(){
+        console.log(this.state);
         return(
             <div className="card" style={{width:'18rem'}}>
                 <div className="card-body">
-                    <h5 className="card-title">Mesa:{this.props.mesa} </h5>
+                    <h5 className="card-title">Mesa:{this.state.mesa} </h5>
                     <p className="card-text"></p>
-                    <button className="btn btn-primary" onClick={handleFechaMesa(json.numeroMesa)}> Fechar Pedido</button>
-                    <p>{produtos}</p>
+                    <button className="btn btn-primary"> Fechar Pedido</button>
+                    <p>{this.state.produto}</p>
                     <strong>Valor:</strong>
-                    <p>{valorTotal}</p>
+                    <p>{this.state.valorTotal}</p>
                 </div>
         </div>
         );
