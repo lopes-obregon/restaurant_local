@@ -69,19 +69,14 @@ module.exports = {
          * deletar os pedidos já feitos para não aver acumulo e peso no banco de dados
          * o id relacioando é o id do admin no caso o dono do restaurante
          */
-        let msg = "";
-        const [mesa] = request.params;
-        if(mesa==0){
-            msg = "Peidodo finalizado";
-        }else{
-            msg = "Pedido finalizado com sucesso";
-        }
-        //console.log(a);
-        //const admId =  request.headers.authorization;
-        //let sql = `DELETE FROM pedidos WHERE mesa_ou_nome = '${mesa}' AND pedido_entrege = 'true' `;
-        //await connect.query(sql);
+        const {mesa} = request.params;
         
-        return response.status(204).send({status:msg});
+        console.log(mesa);
+        //const admId =  request.headers.authorization;
+        let sql = `DELETE FROM pedidos WHERE mesa_ou_nome = '${mesa}' AND pedido_entrege = 'true' `;
+        await connect.query(sql);
+        
+        return response.status(204).send({status:"Conta Finalizada Com Sucesso!"});
     },
     async entreguePedido(request, response){
         /**

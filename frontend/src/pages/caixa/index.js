@@ -50,7 +50,6 @@ export default function Caixa(){
             }
             json.produtos = aux;
             json.numeroMesa = numMesa;
-            console.log(json);
             ReactDom.render(<Card mesa={json} />, document.getElementById('caixa'));
 
 
@@ -58,13 +57,7 @@ export default function Caixa(){
             alert(`Mesa ${numMesa}, não há pedidos realizados`);
         }
     };
-    /*
-    async function handleFechaMesa(mesaNum){
-        api.delete(`/pedidoss/${mesaNum}`).then(response=>{
-            console.log(response);
-        })
-    };*/
-    //
+  
     return(
        <div>
            <h1>Caixa</h1>
@@ -102,13 +95,21 @@ class Card extends React.Component{
         }
     };
     render(){
-        console.log(this.state);
+        async function handleFechaMesa(numeroMesa){
+            try {
+                api.delete(`/pedidoss/${numeroMesa}`);
+                alert("pedidoFinalizado com sucesso");
+                window.location.reload();
+            } catch (error) {
+                alert(error)
+            }
+        }
         return(
             <div className="card" style={{width:'18rem'}}>
                 <div className="card-body">
                     <h5 className="card-title">Mesa:{this.state.mesa} </h5>
                     <p className="card-text"></p>
-                    <button className="btn btn-primary"> Fechar Pedido</button>
+                    <button className="btn btn-primary" onClick={() => handleFechaMesa(this.state.mesa)}> Fechar Pedido</button>
                     <p>{this.state.produto}</p>
                     <strong>Valor:</strong>
                     <p>{this.state.valorTotal}</p>
