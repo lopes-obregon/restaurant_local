@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import api from '../../services/api';
 import ReactDom from 'react-dom';
+import './styles.css'
 
 export default function Caixa(){
     const [numMesa, setNumMesa] = useState();
@@ -59,12 +60,12 @@ export default function Caixa(){
     };
   
     return(
-       <div>
+       <div className="fundo" >
            <h1>Caixa</h1>
            
-            <form onSubmit={handleSearchTable}>
-                <input type="search" placeholder="Numero Da Mesa" value={numMesa} onChange={e => setNumMesa(e.target.value)} />
-                <input type="submit" value="pesquisar" />
+            <form onSubmit={handleSearchTable} className="form-inline" >
+                <input type="search" placeholder="Numero Da Mesa" value={numMesa} onChange={e => setNumMesa(e.target.value)} className="form-control mb-2 mr-sm-2" id="inlineFormInputName2" />
+                <input type="submit" value="pesquisar" className="btn btn-primary mb-2" />
             </form>
             <div id="caixa">
 

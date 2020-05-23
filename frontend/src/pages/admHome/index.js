@@ -5,7 +5,7 @@ import './styles.css'
 export default function AdmHome(){
     const userName = localStorage.getItem('userName');
     return(
-        <div>
+        <div className="conteudo">
             <h1>Seja bem vindo {userName}</h1>
             <div>
                 <section>

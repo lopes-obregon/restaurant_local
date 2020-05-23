@@ -2,6 +2,8 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import api from '../../services/api';
+
+import './styles.css'
 const CadStyle = {
     maxWidth: '18rem'
 }
@@ -22,7 +24,7 @@ export default function Cozinha(){
         }
     }
     return(
-       <div>
+       <div className="cozinha">
             <h1>Cozinha</h1>
             <div>
                 <ul>
