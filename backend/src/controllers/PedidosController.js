@@ -12,7 +12,10 @@ module.exports = {
         const usersId = request.headers.authorization;
         console.log(mesa_ou_nome);
         let sql = `UPDATE pedidos SET pedido = '${pedido}', pedido_entrege = '${pedido_entregue}' WHERE mesa_ou_nome = '${mesa_ou_nome}' `;
-        const [id] = await connect.query(sql, function(error, result){
+        let resposta = {
+            res:""
+        }
+        await connect.query(sql, function(error, result){
             if(error){
                 console.log("ERROR: " + error);
             }else{
@@ -23,12 +26,16 @@ module.exports = {
                     //insere 
                     console.log(pedido);
                     sql = `INSERT INTO pedidos (pedido, pedido_entrege, mesa_ou_nome) VALUES ('${pedido}', '${pedido_entregue}', '${mesa_ou_nome}')`;
-                    [id] =  connect.query(sql);
+                    connect.query(sql, function(error, result){
+                        if(error) throw error;
+                        resposta.res = result;
+
+                    });
                 }
                 
             }
         });
-        return response.json({ id });
+        return response.json(resposta.res);
     },
     async index(request, response){
         //retorna os pedidos que não foram entregues

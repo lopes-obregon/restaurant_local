@@ -9,7 +9,8 @@ const routes = require('./routes');
 app.use(express.json());
 app.use((req, res, next) =>{
     //console.log("Acessou o middle");
-    res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+    //res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+    res.header("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Methods", ['GET', 'POST', 'OPTIONS', 'PUT', 'PATCH', 'DELETE']);
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, X-Custom-Header ,Accept");
     app.use(cors());
