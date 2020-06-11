@@ -13,6 +13,7 @@ export default function Pedidos(){
         try {
             await api.post('/pedidoss', json).then(response => {
                 Alert.alert(response.data);
+                alert("Pedido realizado com sucesso");
             })    
         } catch (error) {
             Alert.alert(error)
