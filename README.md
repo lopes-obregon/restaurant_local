@@ -9,7 +9,7 @@
             <li>id</li>
             <li>user</li>
             <li>password</li>
-        <ul>
+        </ul>
     </li>
     <li>table name:<b>pedidos</b>
         <ul>
@@ -17,12 +17,14 @@
             <li>pedido</li>
             <li>pedido_entrege</li>
             <li>mesa_ou_nome</li>
-        <ul>
+        </ul>
     </li>
     <li>table name:<b>produtos</b>
-        <li>id</li>
-        <li>nomeProduto</li>
-        <li>valor</li>
+        <ul>
+            <li>id</li>
+            <li>nomeProduto</li>
+            <li>valor</li>
+        </ul>    
     </li>
 <ol>
 <h2>Screens</h2>
