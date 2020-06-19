@@ -40,8 +40,10 @@ module.exports = {
     async index(request, response){
         //retorna os pedidos que não foram entregues
         //no caso pedidos para a mesa ver
-        await connect.query("SELECT * FROM pedidos WHERE pedido_entrege = 'false'", function(error, pedidos){
+        let sql = "SELECT * FROM `pedidos` WHERE pedido_entrege ='false'";
+        await connect.query(sql, function(error, pedidos){
             if(error) throw error;
+            console.log(pedidos);
             return  response.json(pedidos);
         })
     },

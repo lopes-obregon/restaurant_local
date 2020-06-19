@@ -8,7 +8,7 @@ const CadStyle = {
     maxWidth: '18rem'
 }
 export default function Cozinha(){
-    const [produtos, setProdutos] = useState([]);
+    const [produtos , setProdutos] = useState([]);
     //const userId = localStorage.getItem('userId');
     useEffect(() =>{
         api.get('pedidoss').then(response =>{
@@ -28,14 +28,14 @@ export default function Cozinha(){
             <h1>Cozinha</h1>
             <div>
                 <ul>
-                    {produtos.map(produtoCozinha =>(
-                        <li>
+                    {produtos.map((produtoCozinha, index) =>(
+                        <li key={index}>
                             <div className="card text-white bg-primary mb" style={CadStyle} >
                                 <div className="card-header">Numero Da Mesa: {produtoCozinha.mesa_ou_nome}</div>
                                 <div className="card-body">
                                     <h5 className="card-title">Pedidos</h5>
                                     <p>{produtoCozinha.pedido}</p>
-                                    <button type="button" onClick={handleEntregaPedido(produtoCozinha.mesa_ou_nome)} className="btn btn-success">Entregar Pedido</button>
+                                    <button type="button" onClick={() => handleEntregaPedido(produtoCozinha.mesa_ou_nome)} className="btn btn-success">Entregar Pedido</button>
                                 </div>
                                 </div>
                         </li>

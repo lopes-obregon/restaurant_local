@@ -8,12 +8,18 @@ import { useState } from 'react';
 import loginImage from '../../imagens/photoLogin.jpg';
 
 export default function Login(){
-    const [user, setId] = useState();
+    const [user, setId] = useState("");
+    const [password, setPassword] = useState("");
     const history = useHistory();
     async function handleLogin(e){
         e.preventDefault();
         try{
-            const response = await api.post('sessions', { user });
+            //create json format
+            let json ={
+                user:user,
+                password:password
+            }
+            const response = await api.post('sessions', json);
             localStorage.setItem('userId', user);
             localStorage.setItem('userName', response.data);
             history.push('/admHome');
@@ -31,7 +37,7 @@ export default function Login(){
                     <input placeholder="Sua ID" value={user} onChange={e => setId(e.target.value)} className="form-control"  />   
                     <div className="form-group">
                         <label htmlFor="exampleInputPassword1" >Senha</label>
-                        <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Senha" /> 
+                        <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Senha" value={password} onChange={e => setPassword(e.target.value)} /> 
                     </div>
                     <input type="submit" value="Entrar" className="btn btn-primary" />
                     <Link to="/register">

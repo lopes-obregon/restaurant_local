@@ -9,19 +9,21 @@ module.exports = {
         })
     },
      async create(request, response){
+         let txtResponse
         try{
-            console.log(request.body);
+           
             const {user, password} = request.body;
-            console.log("user:" + user + "password:" + password);
             const salt = brcypt.genSaltSync(10);
             const hash = brcypt.hashSync(password, salt);
-            console.log("new password:" + hash);
             let sql = `INSERT INTO adms (user, password) VALUES ('${user}', '${hash}')`;
             await connect.query(sql);
             //retorna só depois que o insert der certo async e awiat
+            txtResponse = "successfully registered"
         }catch(err){
             console.log(err);
+            txtResponse = "error in the register"
         }
+        return response.json(txtResponse);
     }   
 }
 /**
