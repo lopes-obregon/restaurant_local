@@ -1,5 +1,5 @@
 import { StyleSheet, BackHandler } from 'react-native';
-import Constats from 'expo-constants';
+import ConstantSourceNode from 'expo-constants';
 
 export default StyleSheet.create({
     container:{
@@ -11,7 +11,7 @@ export default StyleSheet.create({
     form:{
         
         padding: 10,
-        backgroundColor: 'steelBlue',
+        backgroundColor: '#4682B4',
         width: 350,
         height:150
 

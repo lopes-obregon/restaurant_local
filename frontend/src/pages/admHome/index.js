@@ -14,11 +14,12 @@ export default function AdmHome(){
                         <Link className="btn btn-primary" to="/cozinha">
                                 Ir Cozinha
                         </Link>
-                        {'  '}
                         <Link className="btn btn-primary" to="/caixa">
                             Fechar Conta
                         </Link>
-                    
+                        <Link className="btn btn-primary" to="/cadastra">
+                            Cadastrar Produtos
+                        </Link>
                     </div>
                     
                 </section>

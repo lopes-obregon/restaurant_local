@@ -4,6 +4,7 @@ const UsersController = require('./controllers/UsersController');
 const PedidosController = require('./controllers/PedidosController');
 const ProdutosController = require('./controllers/ProdutosController');
 const SessionCOntroller = require('./controllers/SessionController');
+const ProdutosCadastroController = require('./controllers/ProdutosCadastroController');
 //rotas usuraio
 routes.get('/users', UsersController.index);
 routes.post('/users', UsersController.create);
@@ -18,5 +19,7 @@ routes.get('/produtos', ProdutosController.obtemProdutos);//faz as consultas no 
 routes.post('/produtos', ProdutosController.calcProduto);
 //sessão de login da mesa o dono e dos funcionarios
 routes.post('/sessions', SessionCOntroller.create);
-
+//rota do cadastro dos produtos
+routes.post('/produtoCadastro', ProdutosCadastroController.index);
+routes.delete('/produtoCadastro/:produto', ProdutosCadastroController.delete);
 module.exports = routes;
